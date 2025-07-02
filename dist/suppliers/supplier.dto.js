@@ -9,37 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Inventory = void 0;
-const typeorm_1 = require("typeorm");
-let Inventory = class Inventory {
-    id;
-    holder_id;
-    product_id;
+exports.UpdateInventoryItemDto = void 0;
+const swagger_1 = require("@nestjs/swagger");
+const class_validator_1 = require("class-validator");
+class UpdateInventoryItemDto {
+    productId;
     quantity;
-    unit_price;
-};
-exports.Inventory = Inventory;
+    price;
+}
+exports.UpdateInventoryItemDto = UpdateInventoryItemDto;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
-    __metadata("design:type", Number)
-], Inventory.prototype, "id", void 0);
+    (0, swagger_1.ApiProperty)(),
+    (0, class_validator_1.IsNumberString)(),
+    __metadata("design:type", String)
+], UpdateInventoryItemDto.prototype, "productId", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, swagger_1.ApiProperty)(),
+    (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
-], Inventory.prototype, "holder_id", void 0);
+], UpdateInventoryItemDto.prototype, "quantity", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, swagger_1.ApiProperty)(),
+    (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
-], Inventory.prototype, "product_id", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], Inventory.prototype, "quantity", void 0);
-__decorate([
-    (0, typeorm_1.Column)('float'),
-    __metadata("design:type", Number)
-], Inventory.prototype, "unit_price", void 0);
-exports.Inventory = Inventory = __decorate([
-    (0, typeorm_1.Entity)()
-], Inventory);
-//# sourceMappingURL=inventory.entity.js.map
+], UpdateInventoryItemDto.prototype, "price", void 0);
+//# sourceMappingURL=supplier.dto.js.map

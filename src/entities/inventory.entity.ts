@@ -6,10 +6,10 @@ export class Inventory {
   id: number;
 
   @Column()
-  holder_id: string; // Corresponds to a supplier's ID
+  holder_id: number; // Corresponds to a supplier's ID
 
   @Column()
-  product_id: string;
+  product_id: number;
 
   @Column()
   quantity: number;
