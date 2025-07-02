@@ -59,7 +59,7 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Product.prototype, "isActive", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => order_item_entity_1.OrderItem, orderItem => orderItem.product),
+    (0, typeorm_1.OneToMany)(() => order_item_entity_1.OrderItem, (orderItem) => orderItem.product),
     __metadata("design:type", Array)
 ], Product.prototype, "orderItems", void 0);
 __decorate([

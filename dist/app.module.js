@@ -16,6 +16,7 @@ const auth_module_1 = require("./modules/auth/auth.module");
 const products_module_1 = require("./modules/products/products.module");
 const orders_module_1 = require("./modules/orders/orders.module");
 const seed_module_1 = require("./seeds/seed.module");
+const admin_module_1 = require("./admin/admin.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -35,6 +36,7 @@ exports.AppModule = AppModule = __decorate([
             products_module_1.ProductsModule,
             orders_module_1.OrdersModule,
             seed_module_1.SeedModule,
+            admin_module_1.AdminModule,
         ],
     })
 ], AppModule);

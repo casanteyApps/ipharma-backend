@@ -34,7 +34,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Order.prototype, "userId", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => user_entity_1.User, user => user.orders),
+    (0, typeorm_1.ManyToOne)(() => user_entity_1.User, (user) => user.orders),
     (0, typeorm_1.JoinColumn)({ name: 'userId' }),
     __metadata("design:type", user_entity_1.User)
 ], Order.prototype, "user", void 0);
@@ -51,7 +51,7 @@ __decorate([
     __metadata("design:type", String)
 ], Order.prototype, "shippingAddress", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => order_item_entity_1.OrderItem, orderItem => orderItem.order, { cascade: true }),
+    (0, typeorm_1.OneToMany)(() => order_item_entity_1.OrderItem, (orderItem) => orderItem.order, { cascade: true }),
     __metadata("design:type", Array)
 ], Order.prototype, "orderItems", void 0);
 __decorate([
