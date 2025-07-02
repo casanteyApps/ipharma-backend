@@ -16,7 +16,6 @@ exports.AdminController = void 0;
 const common_1 = require("@nestjs/common");
 const admin_service_1 = require("./admin.service");
 const swagger_1 = require("@nestjs/swagger");
-const update_user_status_dto_1 = require("./dtos/update-user-status.dto");
 let AdminController = class AdminController {
     adminService;
     constructor(adminService) {
@@ -31,8 +30,8 @@ let AdminController = class AdminController {
     getSuppliers() {
         return this.adminService.getSuppliers();
     }
-    updateUserStatus(id, updateUserStatusDto) {
-        return this.adminService.updateUserStatus(id, updateUserStatusDto.isActive);
+    updateUserStatus(id) {
+        return this.adminService.updateUserStatus(id);
     }
 };
 exports.AdminController = AdminController;
@@ -57,9 +56,8 @@ __decorate([
 __decorate([
     (0, common_1.Patch)('users/:id/status'),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
-    __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, update_user_status_dto_1.UpdateUserStatusDto]),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], AdminController.prototype, "updateUserStatus", null);
 exports.AdminController = AdminController = __decorate([

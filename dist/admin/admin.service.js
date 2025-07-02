@@ -51,12 +51,12 @@ let AdminService = class AdminService {
             order: { id: 'ASC' },
         });
     }
-    async updateUserStatus(userId, isActive) {
+    async updateUserStatus(userId) {
         const user = await this.userRepository.findOneBy({ id: userId });
         if (!user) {
             throw new common_1.NotFoundException(`User with ID "${userId}" not found`);
         }
-        user.isActive = isActive;
+        user.isActive = !user.isActive;
         await this.userRepository.save(user);
         return user;
     }

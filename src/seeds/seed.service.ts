@@ -11,8 +11,8 @@ import * as bcrypt from 'bcryptjs';
 export class SeedService {
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>,
-    @InjectRepository(Product) private productRepository: Repository<Product>,
     @InjectRepository(Order) private orderRepository: Repository<Order>,
+    @InjectRepository(Product) private productRepository: Repository<Product>,
     @InjectRepository(OrderItem)
     private orderItemRepository: Repository<OrderItem>,
   ) {}
@@ -28,26 +28,93 @@ export class SeedService {
     if (existingUsers > 0) return;
 
     const users = [
+      // Admin
       {
-        email: 'admin@example.com',
-        password: await bcrypt.hash('admin123', 10),
+        email: 'admin@demo.com',
+        password: await bcrypt.hash('password123', 10),
         firstName: 'Admin',
         lastName: 'User',
         role: 'admin',
       },
+      // Customer
       {
-        email: 'john.doe@example.com',
-        password: await bcrypt.hash('user123', 10),
-        firstName: 'John',
-        lastName: 'Doe',
-        role: 'user',
+        email: 'pharmacy@demo.com',
+        password: await bcrypt.hash('password123', 10),
+        firstName: 'City',
+        lastName: 'Pharmacy',
+        role: 'customer',
+      },
+      // Manufacturers
+      {
+        email: 'manu1@demo.com',
+        password: await bcrypt.hash('password123', 10),
+        firstName: 'Pharma',
+        lastName: 'Manufacturer 1',
+        role: 'supplier',
       },
       {
-        email: 'jane.smith@example.com',
-        password: await bcrypt.hash('user123', 10),
-        firstName: 'Jane',
-        lastName: 'Smith',
-        role: 'user',
+        email: 'manu2@demo.com',
+        password: await bcrypt.hash('password123', 10),
+        firstName: 'Pharma',
+        lastName: 'Manufacturer 2',
+        role: 'supplier',
+      },
+      {
+        email: 'manu3@demo.com',
+        password: await bcrypt.hash('password123', 10),
+        firstName: 'Pharma',
+        lastName: 'Manufacturer 3',
+        role: 'supplier',
+      },
+      {
+        email: 'manu4@demo.com',
+        password: await bcrypt.hash('password123', 10),
+        firstName: 'Pharma',
+        lastName: 'Manufacturer 4',
+        role: 'supplier',
+      },
+      {
+        email: 'manu5@demo.com',
+        password: await bcrypt.hash('password123', 10),
+        firstName: 'Pharma',
+        lastName: 'Manufacturer 5',
+        role: 'supplier',
+      },
+      // Distributors
+      {
+        email: 'dist1@demo.com',
+        password: await bcrypt.hash('password123', 10),
+        firstName: 'Pharma',
+        lastName: 'Distributor 1',
+        role: 'supplier',
+      },
+      {
+        email: 'dist2@demo.com',
+        password: await bcrypt.hash('password123', 10),
+        firstName: 'Pharma',
+        lastName: 'Distributor 2',
+        role: 'supplier',
+      },
+      {
+        email: 'dist3@demo.com',
+        password: await bcrypt.hash('password123', 10),
+        firstName: 'Pharma',
+        lastName: 'Distributor 3',
+        role: 'supplier',
+      },
+      {
+        email: 'dist4@demo.com',
+        password: await bcrypt.hash('password123', 10),
+        firstName: 'Pharma',
+        lastName: 'Distributor 4',
+        role: 'supplier',
+      },
+      {
+        email: 'dist5@demo.com',
+        password: await bcrypt.hash('password123', 10),
+        firstName: 'Pharma',
+        lastName: 'Distributor 5',
+        role: 'supplier',
       },
     ];
 
@@ -61,64 +128,64 @@ export class SeedService {
 
     const products = [
       {
-        name: 'Wireless Bluetooth Headphones',
+        name: 'Digital Thermometer',
         description:
-          'High-quality wireless headphones with noise cancellation and 30-hour battery life.',
+          'High-precision digital thermometer with quick reading and fever alert.',
         price: 99.99,
         stock: 50,
-        category: 'electronics',
+        category: 'medical',
         imageUrl:
-          'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400',
+          'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400',
       },
       {
-        name: 'Smartphone Case',
+        name: 'Blood Pressure Monitor',
         description:
-          'Durable and stylish smartphone case with drop protection and wireless charging compatibility.',
+          'Automatic blood pressure monitor with large display and memory function.',
         price: 24.99,
         stock: 100,
-        category: 'accessories',
+        category: 'medical',
         imageUrl:
-          'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=400',
+          'https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=400',
       },
       {
-        name: 'Laptop Stand',
+        name: 'First Aid Kit',
         description:
-          'Ergonomic aluminum laptop stand with adjustable height and angle.',
+          'Comprehensive first aid kit with essential medical supplies for emergency care.',
         price: 49.99,
         stock: 30,
-        category: 'accessories',
+        category: 'medical',
         imageUrl:
-          'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400',
+          'https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=400',
       },
       {
-        name: 'Wireless Mouse',
+        name: 'Pulse Oximeter',
         description:
-          'Precision wireless mouse with ergonomic design and long battery life.',
+          'Fingertip pulse oximeter for measuring blood oxygen levels and pulse rate.',
         price: 34.99,
         stock: 75,
-        category: 'electronics',
+        category: 'medical',
         imageUrl:
-          'https://images.unsplash.com/photo-1527814050087-3793815479db?w=400',
+          'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400',
       },
       {
-        name: 'USB-C Cable',
+        name: 'Disposable Face Masks',
         description:
-          'Fast charging USB-C cable with data transfer capabilities.',
+          '3-ply disposable face masks with comfortable elastic ear loops.',
         price: 12.99,
         stock: 200,
-        category: 'accessories',
+        category: 'medical',
         imageUrl:
-          'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400',
+          'https://images.unsplash.com/photo-1584634731339-252c581abfc5?w=400',
       },
       {
-        name: 'Portable Speaker',
+        name: 'Digital Stethoscope',
         description:
-          'Compact Bluetooth speaker with waterproof design and excellent sound quality.',
+          'Professional-grade digital stethoscope with noise reduction technology.',
         price: 79.99,
         stock: 40,
-        category: 'electronics',
+        category: 'medical',
         imageUrl:
-          'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400',
+          'https://images.unsplash.com/photo-1584715642381-6e7c5846f019?w=400',
       },
     ];
 

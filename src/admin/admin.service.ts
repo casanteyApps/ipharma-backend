@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Product } from 'src/entities/product.entity';
-import { User } from 'src/entities/user.entity';
+import { Product } from '../entities/product.entity';
+import { User } from '../entities/user.entity';
 import { Repository } from 'typeorm';
 // import { User, UserStatus, UserType } from '../users/entities/user.entity';
 // import { Product } from '../products/entities/product.entity';
@@ -46,14 +46,14 @@ export class AdminService {
     });
   }
 
-  async updateUserStatus(userId: number, isActive: boolean): Promise<User> {
+  async updateUserStatus(userId: number): Promise<User> {
     const user = await this.userRepository.findOneBy({ id: userId });
 
     if (!user) {
       throw new NotFoundException(`User with ID "${userId}" not found`);
     }
 
-    user.isActive = isActive;
+    user.isActive = !user.isActive;
     await this.userRepository.save(user);
     return user;
   }

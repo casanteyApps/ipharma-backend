@@ -1,5 +1,5 @@
-import { Product } from 'src/entities/product.entity';
-import { User } from 'src/entities/user.entity';
+import { Product } from '../entities/product.entity';
+import { User } from '../entities/user.entity';
 import { Repository } from 'typeorm';
 export declare class AdminService {
     private readonly userRepository;
@@ -12,5 +12,5 @@ export declare class AdminService {
     }>;
     getCustomers(): Promise<User[]>;
     getSuppliers(): Promise<User[]>;
-    updateUserStatus(userId: number, isActive: boolean): Promise<User>;
+    updateUserStatus(userId: number): Promise<User>;
 }

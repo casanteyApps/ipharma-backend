@@ -30,7 +30,7 @@ async function bootstrap() {
         swagger_1.SwaggerModule.setup('/swagger', app, document);
         const seedService = app.get(seed_service_1.SeedService);
         await seedService.seedAll();
-        const port = process.env.PORT || 3001;
+        const port = process.env.PORT || 3002;
         await app.listen(port);
         console.log(`Application is running on: ${await app.getUrl()}`);
     }

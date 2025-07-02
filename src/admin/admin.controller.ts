@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { ApiTags } from '@nestjs/swagger';
-import { UpdateUserStatusDto } from './dtos/update-user-status.dto';
+// import { UpdateUserStatusDto } from './dtos/update-user-status.dto';
 
 @Controller('admin')
 @ApiTags('admin')
@@ -34,8 +34,8 @@ export class AdminController {
   @Patch('users/:id/status')
   updateUserStatus(
     @Param('id', ParseIntPipe) id: number,
-    @Body() updateUserStatusDto: UpdateUserStatusDto,
+    // @Body() updateUserStatusDto: UpdateUserStatusDto,
   ) {
-    return this.adminService.updateUserStatus(id, updateUserStatusDto.isActive);
+    return this.adminService.updateUserStatus(id);
   }
 }

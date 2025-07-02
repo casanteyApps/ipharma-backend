@@ -1,5 +1,4 @@
 import { AdminService } from './admin.service';
-import { UpdateUserStatusDto } from './dtos/update-user-status.dto';
 export declare class AdminController {
     private readonly adminService;
     constructor(adminService: AdminService);
@@ -10,5 +9,5 @@ export declare class AdminController {
     }>;
     getCustomers(): Promise<import("../entities/user.entity").User[]>;
     getSuppliers(): Promise<import("../entities/user.entity").User[]>;
-    updateUserStatus(id: number, updateUserStatusDto: UpdateUserStatusDto): Promise<import("../entities/user.entity").User>;
+    updateUserStatus(id: number): Promise<import("../entities/user.entity").User>;
 }
