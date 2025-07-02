@@ -3,3 +3,5 @@
 .env.prod
 .env.production
 .env.*
+.env
+src/config/database.config.ts

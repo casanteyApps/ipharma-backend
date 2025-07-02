@@ -13,7 +13,8 @@ export class SeedService {
     @InjectRepository(User) private userRepository: Repository<User>,
     @InjectRepository(Product) private productRepository: Repository<Product>,
     @InjectRepository(Order) private orderRepository: Repository<Order>,
-    @InjectRepository(OrderItem) private orderItemRepository: Repository<OrderItem>,
+    @InjectRepository(OrderItem)
+    private orderItemRepository: Repository<OrderItem>,
   ) {}
 
   async seedAll() {
@@ -61,51 +62,63 @@ export class SeedService {
     const products = [
       {
         name: 'Wireless Bluetooth Headphones',
-        description: 'High-quality wireless headphones with noise cancellation and 30-hour battery life.',
+        description:
+          'High-quality wireless headphones with noise cancellation and 30-hour battery life.',
         price: 99.99,
         stock: 50,
         category: 'electronics',
-        imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400',
+        imageUrl:
+          'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400',
       },
       {
         name: 'Smartphone Case',
-        description: 'Durable and stylish smartphone case with drop protection and wireless charging compatibility.',
+        description:
+          'Durable and stylish smartphone case with drop protection and wireless charging compatibility.',
         price: 24.99,
         stock: 100,
         category: 'accessories',
-        imageUrl: 'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=400',
+        imageUrl:
+          'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=400',
       },
       {
         name: 'Laptop Stand',
-        description: 'Ergonomic aluminum laptop stand with adjustable height and angle.',
+        description:
+          'Ergonomic aluminum laptop stand with adjustable height and angle.',
         price: 49.99,
         stock: 30,
         category: 'accessories',
-        imageUrl: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400',
+        imageUrl:
+          'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400',
       },
       {
         name: 'Wireless Mouse',
-        description: 'Precision wireless mouse with ergonomic design and long battery life.',
+        description:
+          'Precision wireless mouse with ergonomic design and long battery life.',
         price: 34.99,
         stock: 75,
         category: 'electronics',
-        imageUrl: 'https://images.unsplash.com/photo-1527814050087-3793815479db?w=400',
+        imageUrl:
+          'https://images.unsplash.com/photo-1527814050087-3793815479db?w=400',
       },
       {
         name: 'USB-C Cable',
-        description: 'Fast charging USB-C cable with data transfer capabilities.',
+        description:
+          'Fast charging USB-C cable with data transfer capabilities.',
         price: 12.99,
         stock: 200,
         category: 'accessories',
-        imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400',
+        imageUrl:
+          'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400',
       },
       {
         name: 'Portable Speaker',
-        description: 'Compact Bluetooth speaker with waterproof design and excellent sound quality.',
+        description:
+          'Compact Bluetooth speaker with waterproof design and excellent sound quality.',
         price: 79.99,
         stock: 40,
         category: 'electronics',
-        imageUrl: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400',
+        imageUrl:
+          'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400',
       },
     ];
 

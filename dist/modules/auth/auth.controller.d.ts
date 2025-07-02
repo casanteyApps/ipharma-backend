@@ -1,16 +1,14 @@
 import { AuthService } from './auth.service';
+import { LoginDto } from './dtos/login.dto';
 export declare class AuthController {
     private authService;
     constructor(authService: AuthService);
-    login(loginDto: {
-        email: string;
-        password: string;
-    }): Promise<{
+    login(loginDto: LoginDto): Promise<{
         access_token: string;
-        user: any;
+        user: Partial<import("../../entities/user.entity").User>;
     }>;
     register(registerDto: any): Promise<{
         access_token: string;
-        user: any;
+        user: Partial<import("../../entities/user.entity").User>;
     }>;
 }
