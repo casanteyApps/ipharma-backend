@@ -4,4 +4,4 @@
 .env.production
 .env.*
 .env
-src/config/database.config.ts
+# src/config/database.config.ts
