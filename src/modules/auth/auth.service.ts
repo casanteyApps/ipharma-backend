@@ -4,6 +4,8 @@ import { UsersService } from '../users/users.service';
 import { hash, compare } from 'bcryptjs';
 import { User } from 'src/entities/user.entity';
 import { LoginDto } from './dtos/login.dto';
+import { RegisterDto } from './dtos/register.dto';
+import { UnauthorizedException } from '@nestjs/common';
 
 @Injectable()
 export class AuthService {
@@ -28,7 +30,10 @@ export class AuthService {
     loginDto: LoginDto,
   ): Promise<{ access_token: string; user: Partial<User> }> {
     const user = await this.usersService.findByEmail(loginDto.email);
-    await this.validateUser(loginDto.email, loginDto.password);
+    const validatedUser = await this.validateUser(loginDto.email, loginDto.password);
+    if (!validatedUser) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
     const { password, ...result } = user;
     const payload = { email: loginDto.email, sub: user.id };
     return {
@@ -38,9 +43,27 @@ export class AuthService {
   }
 
   async register(
-    userData: any,
+    userData: RegisterDto,
   ): Promise<{ access_token: string; user: Partial<User> }> {
+    // Check if user already exists
+    try {
+      await this.usersService.findByEmail(userData.email);
+      throw new UnauthorizedException('User with this email already exists');
+    } catch (error) {
+      // If user not found, continue with registration
+      if (!(error instanceof UnauthorizedException)) {
+        // User doesn't exist, which is what we want for registration
+      } else {
+        throw error;
+      }
+    }
+
     const user = await this.usersService.create(userData);
-    return this.login(user);
+    const { password, ...result } = user;
+    const payload = { email: user.email, sub: user.id };
+    return {
+      access_token: this.jwtService.sign(payload),
+      user: result,
+    };
   }
 }

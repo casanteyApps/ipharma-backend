@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../../entities/user.entity';
-import { hash, compare} from 'bcryptjs';
+import { hash, compare } from 'bcryptjs';
 
 @Injectable()
 export class UsersService {
@@ -27,22 +27,23 @@ export class UsersService {
   }
 
   async findByEmail(email: string): Promise<User> {
-  const user = await this.userRepository.findOne({ 
-    where: { email }
-  });
-  
-  if (!user) {
-    throw new NotFoundException(`User with email ${email} not found`);
+    const user = await this.userRepository.findOne({ 
+      where: { email }
+    });
+    
+    if (!user) {
+      throw new NotFoundException(`User with email ${email} not found`);
+    }
+    
+    return user;
   }
-  
-  return user;
-}
 
-  async create(userData: User): Promise<User> {
+  async create(userData: Partial<User>): Promise<User> {
     const hashedPassword = await hash(userData.password, 10);
     const user = this.userRepository.create({
       ...userData,
       password: hashedPassword,
+      role: userData.role || 'user',
     });
     return this.userRepository.save(user);
   }
