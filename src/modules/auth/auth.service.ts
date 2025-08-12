@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
@@ -30,7 +31,10 @@ export class AuthService {
     loginDto: LoginDto,
   ): Promise<{ access_token: string; user: Partial<User> }> {
     const user = await this.usersService.findByEmail(loginDto.email);
-    const validatedUser = await this.validateUser(loginDto.email, loginDto.password);
+    const validatedUser = await this.validateUser(
+      loginDto.email,
+      loginDto.password,
+    );
     if (!validatedUser) {
       throw new UnauthorizedException('Invalid credentials');
     }

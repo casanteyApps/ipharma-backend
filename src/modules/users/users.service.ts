@@ -2,7 +2,8 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../../entities/user.entity';
-import { hash, compare } from 'bcryptjs';
+import { hash } from 'bcryptjs';
+import { RegisterDto } from '../auth/dtos/register.dto';
 
 @Injectable()
 export class UsersService {
@@ -12,13 +13,31 @@ export class UsersService {
   ) {}
 
   async findAll(): Promise<User[]> {
-    return this.userRepository.find({ select: ['id', 'email', 'firstName', 'lastName', 'role', 'isActive', 'createdAt'] });
+    return this.userRepository.find({
+      select: [
+        'id',
+        'email',
+        'firstName',
+        'lastName',
+        'role',
+        'isActive',
+        'createdAt',
+      ],
+    });
   }
 
   async findOne(id: number): Promise<User> {
     const user = await this.userRepository.findOne({
       where: { id },
-      select: ['id', 'email', 'firstName', 'lastName', 'role', 'isActive', 'createdAt']
+      select: [
+        'id',
+        'email',
+        'firstName',
+        'lastName',
+        'role',
+        'isActive',
+        'createdAt',
+      ],
     });
     if (!user) {
       throw new NotFoundException('User not found');
@@ -27,18 +46,18 @@ export class UsersService {
   }
 
   async findByEmail(email: string): Promise<User> {
-    const user = await this.userRepository.findOne({ 
-      where: { email }
+    const user = await this.userRepository.findOne({
+      where: { email },
     });
-    
+
     if (!user) {
       throw new NotFoundException(`User with email ${email} not found`);
     }
-    
+
     return user;
   }
 
-  async create(userData: Partial<User>): Promise<User> {
+  async create(userData: RegisterDto): Promise<User> {
     const hashedPassword = await hash(userData.password, 10);
     const user = this.userRepository.create({
       ...userData,

@@ -24,12 +24,30 @@ let UsersService = class UsersService {
         this.userRepository = userRepository;
     }
     async findAll() {
-        return this.userRepository.find({ select: ['id', 'email', 'firstName', 'lastName', 'role', 'isActive', 'createdAt'] });
+        return this.userRepository.find({
+            select: [
+                'id',
+                'email',
+                'firstName',
+                'lastName',
+                'role',
+                'isActive',
+                'createdAt',
+            ],
+        });
     }
     async findOne(id) {
         const user = await this.userRepository.findOne({
             where: { id },
-            select: ['id', 'email', 'firstName', 'lastName', 'role', 'isActive', 'createdAt']
+            select: [
+                'id',
+                'email',
+                'firstName',
+                'lastName',
+                'role',
+                'isActive',
+                'createdAt',
+            ],
         });
         if (!user) {
             throw new common_1.NotFoundException('User not found');
@@ -38,7 +56,7 @@ let UsersService = class UsersService {
     }
     async findByEmail(email) {
         const user = await this.userRepository.findOne({
-            where: { email }
+            where: { email },
         });
         if (!user) {
             throw new common_1.NotFoundException(`User with email ${email} not found`);
