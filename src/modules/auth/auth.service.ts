@@ -51,9 +51,24 @@ export class AuthService {
   ): Promise<{ access_token: string; user: Partial<User> }> {
     // Check if user already exists
     try {
-      await this.usersService.findByEmail(userData.email);
-      throw new UnauthorizedException('User with this email already exists');
+      const existingUser = await this.usersService.findByEmail(userData.email);
+      if (existingUser) {
+        throw new UnauthorizedException('User with this email already exists');
+      }
+
+      const hashedPassword = await hash(userData.password, 10);
+      const newUser = await this.usersService.create({
+        ...userData,
+        password: hashedPassword,
+      });
+      const { password, ...result } = newUser;
+      const payload = { email: newUser.email, sub: newUser.id };
+      return {
+        access_token: this.jwtService.sign(payload),
+        user: result,
+      };
     } catch (error) {
+      throw new UnauthorizedException('User with this email already exists');
       // If user not found, continue with registration
       if (!(error instanceof UnauthorizedException)) {
         // User doesn't exist, which is what we want for registration

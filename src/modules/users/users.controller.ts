@@ -1,5 +1,5 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
+import { Controller, Get, Body, Patch, Param, Delete } from '@nestjs/common';
+import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import { User } from '../../entities/user.entity';
 
@@ -22,7 +22,10 @@ export class UsersController {
 
   @Patch(':id')
   @ApiOperation({ summary: 'Update user' })
-  update(@Param('id') id: string, @Body() updateUserDto: Partial<User>): Promise<User> {
+  update(
+    @Param('id') id: string,
+    @Body() updateUserDto: Partial<User>,
+  ): Promise<User> {
     return this.usersService.update(+id, updateUserDto);
   }
 
