@@ -68,21 +68,13 @@ export class AuthService {
         user: result,
       };
     } catch (error) {
-      throw new UnauthorizedException('User with this email already exists');
       // If user not found, continue with registration
-      if (!(error instanceof UnauthorizedException)) {
+      if (error instanceof UnauthorizedException) {
+        throw new UnauthorizedException('User with this email already exists');
         // User doesn't exist, which is what we want for registration
       } else {
         throw error;
       }
     }
-
-    const user = await this.usersService.create(userData);
-    const { password, ...result } = user;
-    const payload = { email: user.email, sub: user.id };
-    return {
-      access_token: this.jwtService.sign(payload),
-      user: result,
-    };
   }
 }
