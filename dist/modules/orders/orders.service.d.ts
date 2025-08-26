@@ -7,7 +7,7 @@ export declare class OrdersService {
     constructor(orderRepository: Repository<Order>, orderItemRepository: Repository<OrderItem>);
     findAll(): Promise<Order[]>;
     findOne(id: number): Promise<Order>;
-    create(orderData: any): Promise<Order>;
+    create(orderData: Order): Promise<Order>;
     update(id: number, orderData: Partial<Order>): Promise<Order>;
     remove(id: number): Promise<void>;
 }

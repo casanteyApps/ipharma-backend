@@ -15,7 +15,7 @@ import { CustomerModule } from './customers/customers.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: '.env.prod',
+      envFilePath: '.env',
     }),
     TypeOrmModule.forRootAsync({
       useFactory: getDatabaseConfig,

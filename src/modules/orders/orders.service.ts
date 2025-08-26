@@ -30,7 +30,7 @@ export class OrdersService {
     return order;
   }
 
-  async create(orderData: any): Promise<Order> {
+  async create(orderData: Order): Promise<Order> {
     const order = this.orderRepository.create({
       userId: orderData.userId,
       totalAmount: orderData.totalAmount,
@@ -41,13 +41,13 @@ export class OrdersService {
     const savedOrder = await this.orderRepository.save(order);
 
     if (orderData.orderItems && orderData.orderItems.length > 0) {
-      const orderItems = orderData.orderItems.map(item =>
+      const orderItems = orderData.orderItems.map((item) =>
         this.orderItemRepository.create({
           orderId: savedOrder.id,
           productId: item.productId,
           quantity: item.quantity,
           price: item.price,
-        })
+        }),
       );
       await this.orderItemRepository.save(orderItems);
     }

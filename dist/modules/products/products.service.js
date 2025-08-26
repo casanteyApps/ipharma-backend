@@ -26,7 +26,9 @@ let ProductsService = class ProductsService {
         return this.productRepository.find({ where: { isActive: true } });
     }
     async findOne(id) {
-        const product = await this.productRepository.findOne({ where: { id, isActive: true } });
+        const product = await this.productRepository.findOne({
+            where: { id, isActive: true },
+        });
         if (!product) {
             throw new common_1.NotFoundException('Product not found');
         }

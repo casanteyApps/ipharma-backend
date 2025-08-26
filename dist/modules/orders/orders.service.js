@@ -49,7 +49,7 @@ let OrdersService = class OrdersService {
         });
         const savedOrder = await this.orderRepository.save(order);
         if (orderData.orderItems && orderData.orderItems.length > 0) {
-            const orderItems = orderData.orderItems.map(item => this.orderItemRepository.create({
+            const orderItems = orderData.orderItems.map((item) => this.orderItemRepository.create({
                 orderId: savedOrder.id,
                 productId: item.productId,
                 quantity: item.quantity,
