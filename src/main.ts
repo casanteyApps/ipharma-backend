@@ -11,9 +11,9 @@ async function bootstrap() {
     // CORS configuration
     app.enableCors({
       // origin: process.env.FRONTEND_URL,
-      origin: '*', // For development, change to specific frontend URL in production
-      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-      // credentials: true,
+      origin: ['*'],
+      credentials: true,
+      methods: ['GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'],
     });
 
     // Global validation pipe
