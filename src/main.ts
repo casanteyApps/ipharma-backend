@@ -6,14 +6,12 @@ import { SeedService } from './seeds/seed.service';
 
 async function bootstrap() {
   try {
-    const app = await NestFactory.create(AppModule, {
-      cors: true,
-    });
+    const app = await NestFactory.create(AppModule);
 
     // CORS configuration
     app.enableCors({
-      // origin: process.env.FRONTEND_URL || 'http://localhost:3010'
-      origin: '*', // For development, change to specific frontend URL in production
+      origin: process.env.FRONTEND_URL || 'http://localhost:3010',
+      // origin: '*', // For development, change to specific frontend URL in production
       methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
       // credentials: true,
     });
