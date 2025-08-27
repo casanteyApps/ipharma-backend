@@ -10,10 +10,10 @@ async function bootstrap() {
 
     // CORS configuration
     app.enableCors({
-      // origin: process.env.FRONTEND_URL,
+      // origin: process.env.FRONTEND_URL || 'http://localhost:3010',
       origin: '*', // For development, change to specific frontend URL in production
-      methods: ['GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'],
-      credentials: true,
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+      // credentials: true,
     });
 
     // Global validation pipe
